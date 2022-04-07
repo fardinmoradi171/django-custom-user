@@ -9,7 +9,8 @@ from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from .serializers import RegisterSerializer, RefreshSerializer,LoginSerializer
-from .authentication import Authentication
+from .authentication import Authentication 
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 def get_random(length):
@@ -75,18 +76,11 @@ class RefreshView(APIView):
         active_jwt.save()
         return Response({"access": access, "refresh":refresh})
     
-def validate_request(headers):
-    authorization = headers.get("Authorization",None)
-    if not authorization:
-        raise Exception("you need to provide authoraization token")
-        # return Response({"error":"you need authorization.."})
-    token = headers["Authorization"][7:]
-    decoded_data = Authentication.verify_token(token)
-    if not decoded_data:
-        raise Exception("token not valid or expired")
-    return decoded_data
+
 class GSI(APIView):
+    authentication_classes = [Authentication]
+    permission_classes = [IsAuthenticated]
     def get(self,request):
-        validate_request(request.headers)
+        print(request.user)
         return Response({"date":"this is secured date"})
             

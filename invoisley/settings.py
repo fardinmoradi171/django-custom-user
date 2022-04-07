@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'user',
-    'gateway'
+    'gateway',
+    'blog'
 ]
 AUTH_USER_MODEL = "user.CustomUser"
 
@@ -55,12 +56,17 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": ("gateway.authentication.Authentication",)
+    
+}
 ROOT_URLCONF = 'invoisley.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "Template"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

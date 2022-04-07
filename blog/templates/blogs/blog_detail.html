@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <p>blog</p>
+
+        {{blog.title}}<br>
+        {{blog.owner}}<br>
+        {{blog.description}}
+        <p>likes -- {{like}}</p> <hr/>
+        {% for like in likes %}
+        <p>liked by<a href="#">{{like.user}}</a></p><br>
+        {% endfor %}
+        <p>comments -- {{comment}}</p><hr/>
+        {% for comment in comments %}
+        <p><a href="#">{{comment.user}}<a/>leave a comment here</p></br>
+        {% endfor %}
+ 
+    </body>
+</html>

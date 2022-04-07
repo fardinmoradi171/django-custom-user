@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <style>
+            .b{
+                background-color:gray;
+                width:400px,
+                hiegth:200px;
+            }
+            .t{
+                color:red;
+            }
+            .p{
+                color:yelow;
+            }
+
+
+        </style>
+        <button><a href="create">create</a></button>
+        <button><a href="crt">create</a></button>
+        {% for blog in blogs %}
+            <div  class="b">
+                <a href="{{blog.id}}">
+                <h2 class="t">{{blog.title}}</h2>
+                <p class="p">{{blog.CB.count}}</p>
+                </a>
+                
+
+            </div>
+        
+    
+
+        {% endfor %}
+    </body>
+</html>
